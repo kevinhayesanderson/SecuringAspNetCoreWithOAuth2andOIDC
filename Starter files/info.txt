@@ -1,0 +1,22 @@
+OIDC
+TLS is mandatory
+Clients:
+	Confidential clients //eg: web application in web server
+	Public clients //javascript app, or mobile application
+Endpoints:
+	Authorization endpoint (IDP level)
+	Redirection endpoint (client level)
+	Token endpoint (IDP level)
+OpenID Connect Flows:
+	Authorization code:
+		Authorization code flow + PKCE // for both clients //current best practice
+	1. 	It returns authorization code from the authorization endpoint
+		Authorization Code:
+			Short-lived, single use credentials, used to verify that the user
+			who logged in at the level of the IDP is the same one who started the flow at the level 
+			of the client application
+	2. 	Authenticated call to the token endpoint	// for confidential client
+		Unauthenticated call to the token endpoint // for public client
+	Implicit [obsolete]
+	Hybrid [obsolete]
+	Hybrid [obsolete]
