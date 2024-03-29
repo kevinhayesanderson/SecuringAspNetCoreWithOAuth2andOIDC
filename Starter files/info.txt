@@ -1,5 +1,5 @@
 OIDC
-TLS is mandatory
+TLS is mandatory (https)
 Clients:
 	Confidential clients //eg: web application in web server
 	Public clients //javascript app, or mobile application
@@ -20,3 +20,5 @@ OpenID Connect Flows:
 	Implicit [obsolete]
 	Hybrid [obsolete]
 	Hybrid [obsolete]
+	
+https://localhost:5001/.well-known/openid-configuration
