@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ImageGallery.API.Services;
 
-public class GalleryRepository(GalleryContext galleryContext) : IGalleryRepository 
+public class GalleryRepository(GalleryContext galleryContext) : IGalleryRepository
 {
     private readonly GalleryContext _context = galleryContext ??
             throw new ArgumentNullException(nameof(galleryContext));
@@ -12,7 +12,7 @@ public class GalleryRepository(GalleryContext galleryContext) : IGalleryReposito
     public async Task<bool> ImageExistsAsync(Guid id)
     {
         return await _context.Images.AnyAsync(i => i.Id == id);
-    }       
+    }
 
     public async Task<Image?> GetImageAsync(Guid id)
     {
@@ -30,7 +30,7 @@ public class GalleryRepository(GalleryContext galleryContext) : IGalleryReposito
         return await _context.Images
             .AnyAsync(i => i.Id == id && i.OwnerId == ownerId);
     }
-    
+
     public void AddImage(Image image)
     {
         _context.Images.Add(image);
@@ -45,7 +45,7 @@ public class GalleryRepository(GalleryContext galleryContext) : IGalleryReposito
     {
         _context.Images.Remove(image);
 
-        // Note: in a real-life scenario, the image itself potentially should 
+        // Note: in a real-life scenario, the image itself potentially should
         // be removed from disk.  We don't do this in this demo
         // scenario to allow for easier testing / re-running the code
     }
@@ -53,5 +53,5 @@ public class GalleryRepository(GalleryContext galleryContext) : IGalleryReposito
     public async Task<bool> SaveChangesAsync()
     {
         return (await _context.SaveChangesAsync() >= 0);
-    } 
+    }
 }

@@ -7,11 +7,11 @@ using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
 using Duende.IdentityServer.Validation;
-using Simple.IDP.Pages.Consent;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
+using Simple.IDP.Pages.Consent;
 
 namespace Simple.IDP.Pages.Device;
 
@@ -54,7 +54,8 @@ public class Index : PageModel
             return Page();
         }
 
-        Input = new InputModel { 
+        Input = new InputModel
+        {
             UserCode = userCode,
         };
 
@@ -131,7 +132,6 @@ public class Index : PageModel
         }
         return Page();
     }
-
 
     private async Task<bool> SetViewModelAsync(string userCode)
     {

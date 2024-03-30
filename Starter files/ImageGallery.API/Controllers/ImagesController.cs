@@ -14,8 +14,10 @@ public class ImagesController(
 {
     private readonly IGalleryRepository _galleryRepository = galleryRepository ??
             throw new ArgumentNullException(nameof(galleryRepository));
+
     private readonly IWebHostEnvironment _hostingEnvironment = hostingEnvironment ??
             throw new ArgumentNullException(nameof(hostingEnvironment));
+
     private readonly IMapper _mapper = mapper ??
             throw new ArgumentNullException(nameof(mapper));
 
@@ -34,7 +36,7 @@ public class ImagesController(
 
     [HttpGet("{id}", Name = "GetImage")]
     public async Task<ActionResult<Image>> GetImage(Guid id)
-    {          
+    {
         var imageFromRepo = await _galleryRepository.GetImageAsync(id);
 
         if (imageFromRepo == null)
@@ -53,7 +55,7 @@ public class ImagesController(
         // Automapper maps only the Title in our configuration
         var imageEntity = _mapper.Map<Entities.Image>(imageForCreation);
 
-        // Create an image from the passed-in bytes (Base64), and 
+        // Create an image from the passed-in bytes (Base64), and
         // set the filename on the image
 
         // get this environment's web root path (the path
@@ -62,7 +64,7 @@ public class ImagesController(
 
         // create the filename
         string fileName = Guid.NewGuid().ToString() + ".jpg";
-        
+
         // the full file path
         var filePath = Path.Combine($"{webRootPath}/images/{fileName}");
 
@@ -76,7 +78,7 @@ public class ImagesController(
         // be fixed during the course
         //imageEntity.OwnerId = ...;
 
-        // add and save.  
+        // add and save.
         _galleryRepository.AddImage(imageEntity);
 
         await _galleryRepository.SaveChangesAsync();
@@ -90,7 +92,7 @@ public class ImagesController(
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteImage(Guid id)
-    {            
+    {
         var imageFromRepo = await _galleryRepository.GetImageAsync(id);
 
         if (imageFromRepo == null)
@@ -106,7 +108,7 @@ public class ImagesController(
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateImage(Guid id, 
+    public async Task<IActionResult> UpdateImage(Guid id,
         [FromBody] ImageForUpdate imageForUpdate)
     {
         var imageFromRepo = await _galleryRepository.GetImageAsync(id);

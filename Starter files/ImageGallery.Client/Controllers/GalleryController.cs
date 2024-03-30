@@ -1,6 +1,6 @@
 ﻿using ImageGallery.Client.ViewModels;
 using ImageGallery.Model;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
 namespace ImageGallery.Client.Controllers;
@@ -10,6 +10,7 @@ public class GalleryController(IHttpClientFactory httpClientFactory,
 {
     private readonly IHttpClientFactory _httpClientFactory = httpClientFactory ??
             throw new ArgumentNullException(nameof(httpClientFactory));
+
     private readonly ILogger<GalleryController> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
     public async Task<IActionResult> Index()
@@ -34,7 +35,6 @@ public class GalleryController(IHttpClientFactory httpClientFactory,
 
     public async Task<IActionResult> EditImage(Guid id)
     {
-
         var httpClient = _httpClientFactory.CreateClient("APIClient");
 
         var request = new HttpRequestMessage(

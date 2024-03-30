@@ -1,5 +1,5 @@
-﻿using Simple.IDP;
-using Serilog;
+﻿using Serilog;
+using Simple.IDP;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -19,7 +19,7 @@ try
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
-    
+
     app.Run();
 }
 catch (Exception ex)
