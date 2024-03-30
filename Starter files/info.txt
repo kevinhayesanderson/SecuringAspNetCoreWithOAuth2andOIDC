@@ -22,3 +22,6 @@ OpenID Connect Flows:
 	Hybrid [obsolete]
 	
 https://localhost:5001/.well-known/openid-configuration
+
+Authorization Code Flow:
+	Authentication request to the authorization endpoint
