@@ -1,20 +1,25 @@
 ﻿using ImageGallery.Client.ViewModels;
 using ImageGallery.Model;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Text;
 using System.Text.Json;
 
 namespace ImageGallery.Client.Controllers;
 
-public class GalleryController(IHttpClientFactory httpClientFactory,
-    ILogger<GalleryController> logger) : Controller
+[Authorize]
+public class GalleryController(IHttpClientFactory httpClientFactory, ILogger<GalleryController> logger) : Controller
 {
-    private readonly IHttpClientFactory _httpClientFactory = httpClientFactory ??
-            throw new ArgumentNullException(nameof(httpClientFactory));
+    private readonly IHttpClientFactory _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
 
     private readonly ILogger<GalleryController> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
     public async Task<IActionResult> Index()
     {
+        await LogIdentityInformation();
+
         var httpClient = _httpClientFactory.CreateClient("APIClient");
 
         var request = new HttpRequestMessage(
@@ -162,5 +167,24 @@ public class GalleryController(IHttpClientFactory httpClientFactory,
         response.EnsureSuccessStatusCode();
 
         return RedirectToAction("Index");
+    }
+
+    public async Task LogIdentityInformation()
+    {
+        //get the saved identity token
+        var identityToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.IdToken);
+
+        var userClaimsStringBuilder = new StringBuilder();
+        foreach (var claim in User.Claims)
+        {
+            userClaimsStringBuilder.AppendLine($"Claim Type: {claim.Type} - Claim value: {claim.Value}");
+        }
+
+        //log token & claims
+        _logger.LogInformation($"""
+            Identity token & user claims: 
+            {identityToken} 
+            {userClaimsStringBuilder}
+            """);
     }
 }
