@@ -23,7 +23,7 @@ public static class Config
             {
                 "https://localhost:7184/signin-oidc"
             },
-            AllowedScopes =
+            AllowedScopes =  
             {
                 IdentityServerConstants.StandardScopes.OpenId,
                 IdentityServerConstants.StandardScopes.Profile,
