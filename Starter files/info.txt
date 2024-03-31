@@ -25,3 +25,12 @@ https://localhost:5001/.well-known/openid-configuration
 
 Authorization Code Flow:
 	Authentication request to the authorization endpoint
+	
+UserInfo endpoint(IDP level)
+	Used by the client aplication to request additional user claims
+	Calling requires access token(get from token endpoint) with scopes related to the claims that must be returned
+	
+Token endpoint (IDP level)
+	Provides Identity token
+	Provides Access token
+	Provides Refresh token
