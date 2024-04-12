@@ -115,7 +115,9 @@ public class GalleryController(IHttpClientFactory httpClientFactory, ILogger<Gal
         return RedirectToAction("Index");
     }
 
-    [Authorize(Roles = "PayingUser")]
+    //if not in role the app will redirect to AccessDenied action of Account Controller,
+    //we should add it to inform users
+    [Authorize(Roles = "PayingUser")] 
     public IActionResult AddImage()
     {
         return View();
