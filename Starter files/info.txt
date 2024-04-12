@@ -34,3 +34,10 @@ Token endpoint (IDP level)
 	Provides Identity token
 	Provides Access token
 	Provides Refresh token
+	
+Authorization
+	RBAC:
+		Role-based access control
+	ABAC:(Preffered)
+		Attribute-based access control
+		(aka CBAC: Claim-based, aka PBAC: Policy-based)

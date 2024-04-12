@@ -35,14 +35,21 @@ builder.Services.AddAuthentication(options =>
     options.ClientId = "imagegalleryclient";
     options.ClientSecret = "secret";
     options.ResponseType = "code";
-    //options.Scope.Add("openid");
-    //options.Scope.Add("profile");
+    //options.Scope.Add("openid"); //default present in scope list, no need to request it
+    //options.Scope.Add("profile"); //default present in scope list, no need to request it
     //options.CallbackPath = new PathString("signin-oidc");
     options.SaveTokens = true;
     options.GetClaimsFromUserInfoEndpoint = true;
     options.ClaimActions.Remove("aud"); //removes the default filter, so it adds back the aud to the claims object
     options.ClaimActions.DeleteClaim("sid");
     options.ClaimActions.DeleteClaim("idp");
+    options.Scope.Add("roles"); //need to request the custom scope from IDP
+    options.ClaimActions.MapJsonKey("role", "role");//map the role claim from IDP to the client app Claims object
+    options.TokenValidationParameters = new() //validation and specify RoleClaimType to our custom role from IDP
+    {
+        NameClaimType = "given_name",
+        RoleClaimType = "role",
+    };
 });
 
 var app = builder.Build();
