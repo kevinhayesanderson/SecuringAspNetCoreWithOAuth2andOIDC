@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -39,6 +40,9 @@ builder.Services.AddAuthentication(options =>
     //options.CallbackPath = new PathString("signin-oidc");
     options.SaveTokens = true;
     options.GetClaimsFromUserInfoEndpoint = true;
+    options.ClaimActions.Remove("aud"); //removes the default filter, so it adds back the aud to the claims object
+    options.ClaimActions.DeleteClaim("sid");
+    options.ClaimActions.DeleteClaim("idp");
 });
 
 var app = builder.Build();
