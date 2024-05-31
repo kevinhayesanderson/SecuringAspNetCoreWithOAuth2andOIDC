@@ -47,6 +47,7 @@ builder.Services.AddAuthentication(options =>
     options.ClaimActions.DeleteClaim("sid");
     options.ClaimActions.DeleteClaim("idp");
     options.Scope.Add("roles"); //need to request the custom scope from IDP
+    options.Scope.Add("imagegalleryapi.fullaccess");
     options.ClaimActions.MapJsonKey("role", "role");//map the role claim from IDP to the client app Claims object
     options.TokenValidationParameters = new() //validation and specify RoleClaimType to our custom role from IDP
     {
