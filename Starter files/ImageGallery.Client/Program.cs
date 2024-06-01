@@ -13,6 +13,8 @@ builder.Services.AddControllersWithViews()
 
 JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
+builder.Services.AddAccessTokenManagement();
+
 var apiRoot = builder.Configuration["ImageGalleryAPIRoot"];
 // create an HttpClient used for accessing the API
 builder.Services.AddHttpClient("APIClient", client =>
@@ -20,7 +22,7 @@ builder.Services.AddHttpClient("APIClient", client =>
     client.BaseAddress = apiRoot == null ? null : new Uri(apiRoot);
     client.DefaultRequestHeaders.Clear();
     client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-});
+}).AddUserAccessTokenHandler();
 
 builder.Services.AddAuthentication(options =>
 {

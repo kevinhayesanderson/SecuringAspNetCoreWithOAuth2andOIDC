@@ -117,7 +117,7 @@ public class GalleryController(IHttpClientFactory httpClientFactory, ILogger<Gal
 
     //if not in role the app will redirect to AccessDenied action of Account Controller,
     //we should add it to inform users
-    [Authorize(Roles = "PayingUser")] 
+    [Authorize(Roles = "PayingUser")]
     public IActionResult AddImage()
     {
         return View();
@@ -185,10 +185,9 @@ public class GalleryController(IHttpClientFactory httpClientFactory, ILogger<Gal
         }
 
         //log token & claims
-        _logger.LogInformation($"""
-            Identity token & user claims: 
-            {identityToken} 
-            {userClaimsStringBuilder}
-            """);
+        _logger.LogInformation($"Identity token & user claims: \n{identityToken} \n{userClaimsStringBuilder}");
+
+        var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+        _logger.LogInformation($"Access Token: {accessToken}");
     }
 }
