@@ -1,15 +1,16 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGallery.Client", "ImageGallery.Client\ImageGallery.Client.csproj", "{6099AF9E-B3E3-4676-A858-D59935D5330F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageGallery.Client", "ImageGallery.Client\ImageGallery.Client.csproj", "{6099AF9E-B3E3-4676-A858-D59935D5330F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGallery.API", "ImageGallery.API\ImageGallery.API.csproj", "{1749394D-2017-4D16-ADD7-B49AEFD44F7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageGallery.API", "ImageGallery.API\ImageGallery.API.csproj", "{1749394D-2017-4D16-ADD7-B49AEFD44F7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGallery.Model", "ImageGallery.Model\ImageGallery.Model.csproj", "{6801DFE6-631B-427F-8DA4-DEB196D93AB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageGallery.Model", "ImageGallery.Model\ImageGallery.Model.csproj", "{6801DFE6-631B-427F-8DA4-DEB196D93AB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.IDP", "Simple.IDP\Simple.IDP.csproj", "{FBE21355-DEC2-4849-9F2A-B6ED81A521A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.IDP", "Simple.IDP\Simple.IDP.csproj", "{FBE21355-DEC2-4849-9F2A-B6ED81A521A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGallery.Authorization", "ImageGallery.Authorization\ImageGallery.Authorization.csproj", "{1C97373B-2E28-4DBE-97C0-70383158E58A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +18,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C97373B-2E28-4DBE-97C0-70383158E58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C97373B-2E28-4DBE-97C0-70383158E58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C97373B-2E28-4DBE-97C0-70383158E58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C97373B-2E28-4DBE-97C0-70383158E58A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6099AF9E-B3E3-4676-A858-D59935D5330F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6099AF9E-B3E3-4676-A858-D59935D5330F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6099AF9E-B3E3-4676-A858-D59935D5330F}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,3 +1,4 @@
+using ImageGallery.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -50,12 +51,19 @@ builder.Services.AddAuthentication(options =>
     options.ClaimActions.DeleteClaim("idp");
     options.Scope.Add("roles"); //need to request the custom scope from IDP
     options.Scope.Add("imagegalleryapi.fullaccess");
+    options.Scope.Add("country");
     options.ClaimActions.MapJsonKey("role", "role");//map the role claim from IDP to the client app Claims object
+    options.ClaimActions.MapUniqueJsonKey("country", "country");
     options.TokenValidationParameters = new() //validation and specify RoleClaimType to our custom role from IDP
     {
         NameClaimType = "given_name",
         RoleClaimType = "role",
     };
+});
+
+builder.Services.AddAuthorization(o =>
+{
+    o.AddPolicy("UserCanAddImage", AuthorizationPolicies.CanAddIamge());
 });
 
 var app = builder.Build();

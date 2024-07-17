@@ -117,7 +117,9 @@ public class GalleryController(IHttpClientFactory httpClientFactory, ILogger<Gal
 
     //if not in role the app will redirect to AccessDenied action of Account Controller,
     //we should add it to inform users
-    [Authorize(Roles = "PayingUser")]
+    //[Authorize(Roles = "PayingUser")]
+
+    [Authorize(Policy = "UserCanAddImage")]
     public IActionResult AddImage()
     {
         return View();
@@ -125,7 +127,8 @@ public class GalleryController(IHttpClientFactory httpClientFactory, ILogger<Gal
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [Authorize(Roles = "PayingUser")]
+    //[Authorize(Roles = "PayingUser")]
+    [Authorize(Policy = "UserCanAddImage")]
     public async Task<IActionResult> AddImage(AddImageViewModel addImageViewModel)
     {
         if (!ModelState.IsValid)
